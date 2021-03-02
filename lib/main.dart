@@ -1,7 +1,9 @@
-import 'dart:html';
+// ignore: avoid_web_libraries_in_flutter
+// import 'dart:html';
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
+import 'dart:ui';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -14,17 +16,33 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NavBar Tutorial',
+      title: 'BruxAlert',
+
       home: Scaffold(
         appBar: AppBar(
-          title: Text('NavBar Tutorial'),
+          title: Text('BruxAlert'),
+          backgroundColor: Colors.purple[400],
         ),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               ListTile(
-                title: Text('Item 1'),
+                title: Text(''),
+
+                onTap: () {
+                  // What happens after you tap the navigation item
+                  setState(() {
+
+                    mainWidget = Item1();
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+
+                title: Text('Heartrate'),
+                tileColor: Colors.blue,
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -34,7 +52,52 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
               ListTile(
-                title: Text('Item 2'),
+                title: Text('Pressure Sensor'),
+                tileColor: Colors.green,
+                onTap: () {
+                  // What happens after you tap the navigation item
+                  setState(() {
+                    mainWidget = Item1();
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Motor Information'),
+                tileColor: Colors.yellow,
+                onTap: () {
+                  // What happens after you tap the navigation item
+                  setState(() {
+                    mainWidget = Item1();
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Temperature'),
+                tileColor: Colors.red,
+                onTap: () {
+                  // What happens after you tap the navigation item
+                  setState(() {
+                    mainWidget = Item1();
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Progress'),
+                tileColor: Colors.pink,
+                onTap: () {
+                  // What happens after you tap the navigation item
+                  setState(() {
+                    mainWidget = Item1();
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Settings'),
+                tileColor: Colors.grey,
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -56,7 +119,12 @@ class Item1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Item 1'),
+      appBar: AppBar(
+        title: Text('Hey, how are you doing today?'),
+        backgroundColor: Colors.lightBlue[400],
+        centerTitle: true,
+
+      ),
     );
   }
 }
@@ -65,6 +133,7 @@ class Item2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Text('Item 2'),
     );
   }
