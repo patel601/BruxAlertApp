@@ -1,7 +1,7 @@
 // ignore: avoid_web_libraries_in_flutter
 // import 'dart:html';
 
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Widget mainWidget = Item1();
+
   //Widget hrButton = HRButton();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('BruxAlert'),
-          backgroundColor: Colors.purple[400],
+          backgroundColor: Colors.grey,
         ),
         drawer: Drawer(
           // Menu bar
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp> {
               ),
               ListTile(
                 title: Text('Heartrate'),
-                tileColor: Colors.blue,
+                tileColor: Colors.pink[300],
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
               ),
               ListTile(
                 title: Text('Pressure Sensor'),
-                tileColor: Colors.green,
+                tileColor: Colors.lightGreen[300],
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> {
               ),
               ListTile(
                 title: Text('Motor Information'),
-                tileColor: Colors.yellow,
+                tileColor: Colors.yellow[300],
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -76,7 +77,7 @@ class _MyAppState extends State<MyApp> {
               ),
               ListTile(
                 title: Text('Temperature'),
-                tileColor: Colors.red,
+                tileColor: Colors.lightBlue[300],
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -86,8 +87,8 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
               ListTile(
-                title: Text('Progress'),
-                tileColor: Colors.pink,
+                title: Text('Overall Progress'),
+                tileColor: Colors.indigo[300],
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
@@ -107,23 +108,56 @@ class _MyAppState extends State<MyApp> {
                   Navigator.pop(context);
                 },
               ),
-              TextButton(
-                onPressed: () {
-                  // Respond to button press
-                },
-                child: Text('Heart Rate'),
-              ),
             ],
           ),
         ),
-        body: mainWidget, // Here
+
+        body: (// mainWidget), // Here
+                TextButton.icon(
+                    label: Text('Heart Rate'),
+                    icon: Icon(Icons.workspaces_filled),
+                    onPressed: () {
+                      print('Pressed');
+                    }
+                )
+      //       TextButton.icon(
+      //       label: Text('Pressure Sensor'),
+      //     icon: Icon(Icons.workspaces_filled),
+      //     onPressed: () {
+      //       print('Pressed');
+      //     }
+      // ),
+      //   TextButton.icon(
+      //       label: Text('Motor Information'),
+      //       icon: Icon(Icons.workspaces_filled),
+      //       onPressed: () {
+      //         print('Pressed');
+      //       }
+      //   ),
+      //   TextButton.icon(
+      //       label: Text('Temperature'),
+      //       icon: Icon(Icons.workspaces_filled),
+      //       onPressed: () {
+      //         print('Pressed');
+      //       }
+      //   ),
+      //   TextButton.icon(
+      //       label: Text('Overall Progress'),
+      //       icon: Icon(Icons.workspaces_filled),
+      //       onPressed: () {
+      //         print('Pressed');
+      //       }
+      //   ) // end of text buttons
+            )
+
       ),
-    );
+
+      );
   }
 }
 
 class Item1 extends StatelessWidget {
-  // Item 1 is for the welcome mesaage
+  // Item 1 is for the welcome message
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,6 +165,7 @@ class Item1 extends StatelessWidget {
         title: Text('Hey, how are you doing today?'),
         backgroundColor: Colors.lightBlue[400],
         centerTitle: true,
+
       ),
     );
   }
