@@ -7,152 +7,177 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
 
-void main() => runApp(MyApp());
+void main() => runApp(new MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Flutter Demo',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: new MyHomePage(title: 'Brux Alert'),
+    );
+  }
+  //_MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
+
+
+class _MyAppState extends State<MyHomePage> {
   Widget mainWidget = Item1();
 
-  //Widget hrButton = HRButton();
+  buttonPressed(String buttonText){
+    print(buttonText); // DEBUG purposes
+  }
+
+
+  Widget buildButton(String buttonText){
+    return new Expanded(
+      child: new OutlineButton(
+        padding: new EdgeInsets.all(12.0),
+        child: new Text(
+          buttonText,
+          style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold),
+        ),
+        onPressed: () => buttonPressed(buttonText),
+      ),
+    );
+  }
+  String output = "";
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BruxAlert',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('BruxAlert'),
-          backgroundColor: Colors.grey,
-        ),
-        drawer: Drawer(
-          // Menu bar
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(
-                title: Text(''),
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item1();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Heartrate'),
-                tileColor: Colors.pink[300],
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item1();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Pressure Sensor'),
-                tileColor: Colors.lightGreen[300],
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item1();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Motor Information'),
-                tileColor: Colors.yellow[300],
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item1();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Temperature'),
-                tileColor: Colors.lightBlue[300],
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item1();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Overall Progress'),
-                tileColor: Colors.indigo[300],
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item1();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Settings'),
-                tileColor: Colors.grey,
-                onTap: () {
-                  // What happens after you tap the navigation item
-                  setState(() {
-                    mainWidget = Item2();
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+        appBar: new AppBar(title: new Text(widget.title)),
+
+          drawer: Drawer(
+            // Menu bar
+            child:
+            ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                ListTile(
+                  title: Text(''),
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item1();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text('Heart rate'),
+                  tileColor: Colors.pink[300],
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item1();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text('Pressure Sensor'),
+                  tileColor: Colors.lightGreen[300],
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item1();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text('Motor Information'),
+                  tileColor: Colors.yellow[300],
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item1();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text('Temperature'),
+                  tileColor: Colors.lightBlue[300],
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item1();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text('Overall Progress'),
+                  tileColor: Colors.indigo[300],
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item1();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: Text('Settings'),
+                  tileColor: Colors.grey,
+                  onTap: () {
+                    // What happens after you tap the navigation item
+                    setState(() {
+                      mainWidget = Item2();
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
 
-        body: (// mainWidget), // Here
-                TextButton.icon(
-                    label: Text('Heart Rate'),
-                    icon: Icon(Icons.workspaces_filled),
-                    onPressed: () {
-                      print('Pressed');
-                    }
-                )
-      //       TextButton.icon(
-      //       label: Text('Pressure Sensor'),
-      //     icon: Icon(Icons.workspaces_filled),
-      //     onPressed: () {
-      //       print('Pressed');
-      //     }
-      // ),
-      //   TextButton.icon(
-      //       label: Text('Motor Information'),
-      //       icon: Icon(Icons.workspaces_filled),
-      //       onPressed: () {
-      //         print('Pressed');
-      //       }
-      //   ),
-      //   TextButton.icon(
-      //       label: Text('Temperature'),
-      //       icon: Icon(Icons.workspaces_filled),
-      //       onPressed: () {
-      //         print('Pressed');
-      //       }
-      //   ),
-      //   TextButton.icon(
-      //       label: Text('Overall Progress'),
-      //       icon: Icon(Icons.workspaces_filled),
-      //       onPressed: () {
-      //         print('Pressed');
-      //       }
-      //   ) // end of text buttons
+          body: new Container(
+            child: new Column(
+              children: <Widget>[
+                new Container(
+                alignment: Alignment.centerRight,
+                padding:
+                new EdgeInsets.symmetric(vertical: 14.0, horizontal: 12.0),
+                child: new Text(output,
+                    style: new TextStyle(
+                      fontSize: 48.0,
+                      fontWeight: FontWeight.bold,
+                    ))),
+              new Expanded(
+                child: new Divider(),
+              ),
+              new Column(children: [
+                new Row(children: [
+                  buildButton("Heart Rate"),
+                  buildButton("Temperature"),
+                  buildButton("Home"),
+                  buildButton("Pressure"),
+                  buildButton("Reports")
+                ]),
+              ],
             )
+          // mainWidget), // Here
+        ])
+      )
+    )
 
-      ),
 
-      );
+    );
   }
 }
 
