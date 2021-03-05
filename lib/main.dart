@@ -1,9 +1,12 @@
 // ignore: avoid_web_libraries_in_flutter
 // import 'dart:html';
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -13,34 +16,32 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Widget mainWidget = Item1();
+  //Widget hrButton = HRButton();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BruxAlert',
-
       home: Scaffold(
         appBar: AppBar(
           title: Text('BruxAlert'),
           backgroundColor: Colors.purple[400],
         ),
         drawer: Drawer(
+          // Menu bar
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               ListTile(
                 title: Text(''),
-
                 onTap: () {
                   // What happens after you tap the navigation item
                   setState(() {
-
                     mainWidget = Item1();
                   });
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-
                 title: Text('Heartrate'),
                 tileColor: Colors.blue,
                 onTap: () {
@@ -106,6 +107,12 @@ class _MyAppState extends State<MyApp> {
                   Navigator.pop(context);
                 },
               ),
+              TextButton(
+                onPressed: () {
+                  // Respond to button press
+                },
+                child: Text('Heart Rate'),
+              ),
             ],
           ),
         ),
@@ -116,6 +123,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class Item1 extends StatelessWidget {
+  // Item 1 is for the welcome mesaage
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +131,6 @@ class Item1 extends StatelessWidget {
         title: Text('Hey, how are you doing today?'),
         backgroundColor: Colors.lightBlue[400],
         centerTitle: true,
-
       ),
     );
   }
@@ -133,7 +140,6 @@ class Item2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Text('Item 2'),
     );
   }
