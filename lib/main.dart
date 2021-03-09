@@ -59,7 +59,7 @@ class _MyAppState extends State<MyHomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(title: new Text(widget.title)),
-
+        backgroundColor: Color(0xf1d1d6),
           drawer: Drawer(
             // Menu bar
             child:
@@ -148,7 +148,11 @@ class _MyAppState extends State<MyHomePage> {
 
           body: new Container(
             child: new Column(
-              children: <Widget>[
+              children: [
+                new Row(children: [
+                    buildButton("Profile"),
+                    buildButton("Notifications")
+                ]),
                 new Container(
                 alignment: Alignment.centerRight,
                 padding:
