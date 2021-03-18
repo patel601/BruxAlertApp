@@ -12,7 +12,7 @@ class HeartRateScreen extends StatelessWidget {
           Container(
             height: size.height * .45,
             decoration: BoxDecoration(
-              color: kBlueLightColor,
+              color: Colors.pinkAccent,
               image: DecorationImage(
                 image: AssetImage("assets/images/meditation_bg.png"),
                 fit: BoxFit.fitWidth,
@@ -27,65 +27,48 @@ class HeartRateScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(
-                      height: size.height * 0.05,
+                      height: size.height * .08,
                     ),
                     Text(
-                      "Meditation",
+                      "Heart Rate",
                       style: Theme.of(context)
                           .textTheme
                           .display1
                           .copyWith(fontWeight: FontWeight.w900),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Text(
-                      "3-10 MIN Course",
+                      "          ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 10),
                     SizedBox(
                       width: size.width * .6, // it just take 60% of total width
                       child: Text(
-                        "Live happier and healthier by learning the fundamentals of meditation and mindfulness",
+                        "Heart rate may indicate moments of clenching or grinding. Look at today, all week, month, or all time stats. ",
                       ),
                     ),
                     SizedBox(
-                      width: size.width * .5, // it just take the 50% width
-                      child: SearchBar(),
+                      height: 40,
                     ),
                     Wrap(
                       spacing: 20,
                       runSpacing: 20,
                       children: <Widget>[
                         SeassionCard(
-                          seassionNum: 1,
+                          seassionTitle: "Today's Stats",
                           isDone: true,
                           press: () {},
                         ),
                         SeassionCard(
-                          seassionNum: 2,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 3,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 4,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 5,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 6,
+                          seassionTitle: "All Time Stats",
                           press: () {},
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 65),
                     Text(
-                      "Meditation",
+                      "For Today:",
                       style: Theme.of(context)
                           .textTheme
                           .title
@@ -94,7 +77,7 @@ class HeartRateScreen extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 20),
                       padding: EdgeInsets.all(10),
-                      height: 90,
+                      height: 60,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(13),
@@ -119,10 +102,94 @@ class HeartRateScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Basic 2",
+                                  "Minimum Heart Rate",
                                   style: Theme.of(context).textTheme.subtitle,
                                 ),
-                                Text("Start your deepen you practice")
+                                Text("78 beats per minute")
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            //child: SvgPicture.asset("assets/icons/Lock.svg"),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      padding: EdgeInsets.all(10),
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(13),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 17),
+                            blurRadius: 23,
+                            spreadRadius: -13,
+                            color: kShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          // SvgPicture.asset(
+                          //   "assets/icons/Meditation_women_small.svg",
+                          // ),
+                          SizedBox(width: 20),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Maximum Heart Rate",
+                                  style: Theme.of(context).textTheme.subtitle,
+                                ),
+                                Text("134 beats per minute")
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            //child: SvgPicture.asset("assets/icons/Lock.svg"),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      padding: EdgeInsets.all(10),
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(13),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 17),
+                            blurRadius: 23,
+                            spreadRadius: -13,
+                            color: kShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          // SvgPicture.asset(
+                          //   "assets/icons/Meditation_women_small.svg",
+                          // ),
+                          SizedBox(width: 20),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Average Heart Rate",
+                                  style: Theme.of(context).textTheme.subtitle,
+                                ),
+                                Text("93 beats per minute")
                               ],
                             ),
                           ),

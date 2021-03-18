@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'constants.dart';
 import 'heartRate.dart';
 import 'temperature.dart';
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Heart Rate",
                           boxColor: Colors.pinkAccent,
-                          svgSrc: "assets/icons/Hamburger.svg",
+                          svgSrc: "assets/heartrateicon.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -128,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Haptic Motor",
                           boxColor: Colors.teal,
-                          svgSrc: "assets/icons/yoga.svg",
+                          //svgSrc: "assets/icons/yoga.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -361,10 +362,12 @@ class CategoryCard extends StatelessWidget {
 
 class SeassionCard extends StatelessWidget {
   final int seassionNum;
+  final String seassionTitle;
   final bool isDone;
   final Function press;
   const SeassionCard({
     Key key,
+    this.seassionTitle,
     this.seassionNum,
     this.isDone = false,
     this.press,
@@ -403,18 +406,18 @@ class SeassionCard extends StatelessWidget {
                       height: 42,
                       width: 43,
                       decoration: BoxDecoration(
-                        color: isDone ? kBlueColor : Colors.white,
+                        color: isDone ? Colors.pinkAccent[100] : Colors.white,
                         shape: BoxShape.circle,
-                        border: Border.all(color: kBlueColor),
+                        border: Border.all(color: Colors.black),
                       ),
                       child: Icon(
-                        Icons.play_arrow,
-                        color: isDone ? Colors.white : kBlueColor,
+                        Icons.analytics_outlined,
+                        color: isDone ? Colors.white : Colors.pinkAccent[100],
                       ),
                     ),
                     SizedBox(width: 10),
                     Text(
-                      "Session $seassionNum",
+                      "$seassionTitle",
                       style: Theme.of(context).textTheme.subtitle,
                     )
                   ],
