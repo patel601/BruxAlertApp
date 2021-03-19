@@ -10,13 +10,10 @@ class TemperatureScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            height: size.height * .45,
+            height: size.height * .40,
             decoration: BoxDecoration(
-              color: kBlueLightColor,
-              image: DecorationImage(
-                image: AssetImage("assets/images/meditation_bg.png"),
-                fit: BoxFit.fitWidth,
-              ),
+              color: Colors.lightBlueAccent,
+
             ),
           ),
           SafeArea(
@@ -30,7 +27,7 @@ class TemperatureScreen extends StatelessWidget {
                       height: size.height * 0.05,
                     ),
                     Text(
-                      "Meditation",
+                      "Temperature",
                       style: Theme.of(context)
                           .textTheme
                           .display1
@@ -38,59 +35,39 @@ class TemperatureScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      "3-10 MIN Course",
+                      "Track the temperature changes in your BruxAlert device",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 60),
                     SizedBox(
                       width: size.width * .6, // it just take 60% of total width
-                      child: Text(
-                        "Live happier and healthier by learning the fundamentals of meditation and mindfulness",
-                      ),
+
                     ),
-                    SizedBox(
-                      width: size.width * .5, // it just take the 50% width
-                      child: SearchBar(),
+                    Text(
+                      "View your stats!",
+                      style: Theme.of(context)
+                          .textTheme
+                          .display1
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
+
                     Wrap(
                       spacing: 20,
                       runSpacing: 20,
                       children: <Widget>[
                         SeassionCard(
-                          seassionNum: 1,
+                          seassionTitle: "Today's Stats",
                           isDone: true,
                           press: () {},
                         ),
                         SeassionCard(
-                          seassionNum: 2,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 3,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 4,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 5,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 6,
+                          seassionTitle: "Weekly Stats",
+                          isDone: true,
                           press: () {},
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      "Meditation",
-                      style: Theme.of(context)
-                          .textTheme
-                          .title
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
+
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 20),
                       padding: EdgeInsets.all(10),
@@ -109,9 +86,10 @@ class TemperatureScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: <Widget>[
-                          // SvgPicture.asset(
-                          //   "assets/icons/Meditation_women_small.svg",
-                          // ),
+                          Text(
+                            "Today's Readings: ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(width: 20),
                           Expanded(
                             child: Column(
@@ -119,12 +97,14 @@ class TemperatureScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Basic 2",
+                                  "Average Temperature",
                                   style: Theme.of(context).textTheme.subtitle,
                                 ),
-                                Text("Start your deepen you practice")
+                                Text("98.3F"),
+
                               ],
                             ),
+
                           ),
                           Padding(
                             padding: EdgeInsets.all(10),

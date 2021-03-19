@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'constants.dart';
 import 'heartRate.dart';
 import 'temperature.dart';
@@ -466,23 +465,32 @@ class BottomNavBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       height: 70,
-      color: Colors.orangeAccent,
+      color: Colors.black87,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           BottomNavItem(
-            color: Colors.deepPurple,
+            color: Colors.white,
+            icon: Icons.article_outlined,
             title: "Calendar",
-            svgScr: "assets/icons/calendar.svg",
           ),
           BottomNavItem(
-            title: "Progress:",
-            svgScr: "assets/icons/gym.svg",
+            title: "Progress",
+            color: Colors.white,
+            icon: Icons.analytics_outlined,
+            isActive: true,
+          ),
+          BottomNavItem(
+            title: "Home",
+            color: Colors.white,
+            icon: Icons.home,
             isActive: true,
           ),
           BottomNavItem(
             title: "Settings",
-            svgScr: "assets/icons/Settings.svg",
+            color: Colors.white,
+            icon: Icons.settings,
+            isActive: true,
           ),
         ],
       ),
@@ -496,13 +504,15 @@ class BottomNavItem extends StatelessWidget {
   final Function press;
   final bool isActive;
   final Color color;
+  final IconData icon;
   const BottomNavItem({
     Key key,
     this.svgScr,
     this.title,
     this.press,
     this.isActive = false,
-    this.color
+    this.color,
+    this.icon
   }) : super(key: key);
 
   @override
@@ -512,10 +522,7 @@ class BottomNavItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          // SvgPicture.asset(
-          //   svgScr,
-          //   color: isActive ? kActiveIconColor : kTextColor,
-          // ),
+
           Text(
             title,
             style: TextStyle(color: isActive ? kActiveIconColor : kTextColor),
