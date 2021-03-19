@@ -2,144 +2,77 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'main.dart';
 class HMotorScreen extends StatelessWidget {
+  const HMotorScreen({Key  key}) : super(key: key);
+
+  static const String _title = 'Haptic Motor';
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    return const MaterialApp(
+      title: _title,
+      home: MyStatelessWidget(),
+    );
+  }
+}
+
+/// This is the stateless widget that the main application instantiates.
+class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: size.height * .45,
-            decoration: BoxDecoration(
-              color: kBlueLightColor,
-              image: DecorationImage(
-                image: AssetImage("assets/images/meditation_bg.png"),
-                fit: BoxFit.fitWidth,
-              ),
-            ),
+      appBar: AppBar(
+        title: const Text('Haptic Motor'),
+        backgroundColor: Colors.teal,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.bluetooth),
+            tooltip: 'Show connection',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Connected to device!')));
+            },
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: size.height * 0.05,
+          IconButton(
+            icon: const Icon(Icons.bluetooth_audio),
+
+            color: Colors.purple,
+
+              tooltip: 'Toggle Bluetooth'
+          ),
+          IconButton(
+            icon: const Icon(Icons.navigate_next),
+            tooltip: 'Go to connectivity',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: const Text('Connectivity'),
                     ),
-                    Text(
-                      "Meditation",
-                      style: Theme.of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(fontWeight: FontWeight.w900),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "3-10 MIN Course",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: size.width * .6, // it just take 60% of total width
+                    body: const Center(
                       child: Text(
-                        "Live happier and healthier by learning the fundamentals of meditation and mindfulness",
+                        'Some Information about connectivity will be displayed here',
+                        style: TextStyle(fontSize: 20),
                       ),
                     ),
-                    SizedBox(
-                      width: size.width * .5, // it just take the 50% width
-                      child: SearchBar(),
-                    ),
-                    Wrap(
-                      spacing: 20,
-                      runSpacing: 20,
-                      children: <Widget>[
-                        SeassionCard(
-                          seassionNum: 1,
-                          isDone: true,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 2,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 3,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 4,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 5,
-                          press: () {},
-                        ),
-                        SeassionCard(
-                          seassionNum: 6,
-                          press: () {},
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      "Meditation",
-                      style: Theme.of(context)
-                          .textTheme
-                          .title
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 20),
-                      padding: EdgeInsets.all(10),
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(13),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0, 17),
-                            blurRadius: 23,
-                            spreadRadius: -13,
-                            color: kShadowColor,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          // SvgPicture.asset(
-                          //   "assets/icons/Meditation_women_small.svg",
-                          // ),
-                          SizedBox(width: 20),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Basic 2",
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                                Text("Start your deepen you practice")
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            //child: SvgPicture.asset("assets/icons/Lock.svg"),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+                  );
+                },
+              ));
+            },
           ),
         ],
       ),
+      body: const Center(
+        widthFactor: 10,
+        heightFactor: 20,
+        child: Text(
+          'Haptic Motor screen setup',
+          style: TextStyle(fontSize: 24, color: Colors.teal,),
+        ),
+      ),
+
     );
   }
 }
