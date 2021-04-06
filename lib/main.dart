@@ -23,12 +23,20 @@ class MyApp extends StatelessWidget {
         fontFamily: "Cairo",
         textTheme: Theme.of(context).textTheme.apply(displayColor: Color(0xFF222B45)),
       ),
-      home: HomeScreen(),
+      home: MyHomePage(),
     );
   }
 }
+class MyHomePage extends StatefulWidget{
+  MyHomePage({Key key, this.title}) : super(key:key);
+  final String title;
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
-class HomeScreen extends StatelessWidget {
+
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context)
@@ -42,10 +50,10 @@ class HomeScreen extends StatelessWidget {
             height: size.height * .45,
             decoration: BoxDecoration(
               color: Color(0xFFF5CEB8),
-              image: DecorationImage(
-                alignment: Alignment.centerLeft,
-                image: AssetImage("assets/images/undraw_pilates_gpdb.png"),
-              ),
+              // image: DecorationImage(
+              //   alignment: Alignment.centerLeft,
+              //   //image: AssetImage("assets/images/undraw_pilates_gpdb.png"),
+              // ),
             ),
           ),
           SafeArea(
@@ -68,7 +76,8 @@ class HomeScreen extends StatelessWidget {
                           icon: const Icon(Icons.account_circle),
                           hoverColor: Colors.blue,
                         )
-                      //child: SvgPicture.asset("assets/icons/menu.svg"),
+
+
                     ),
                   ),
                   Text(
@@ -78,18 +87,40 @@ class HomeScreen extends StatelessWidget {
                         .display1
                         .copyWith(fontWeight: FontWeight.w900),
                   ),
-                  SearchBar(),
+                  Positioned(
+                    bottom: 0,
+
+                    child: Container(
+
+                      height: 75.0,
+                      width: MediaQuery.of(context).size.width - 40,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(28)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              spreadRadius: 5.5,
+                              blurRadius: 5.5,
+                            )
+                          ]),
+                      child:MoodsSelector(),
+                    ),
+                  ),
+
                   Expanded(
                     child: GridView.count(
                       crossAxisCount: 2,
                       childAspectRatio: .85,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
                       children: <Widget>[
                         CategoryCard(
                           title: "Heart Rate",
                           boxColor: Colors.pinkAccent,
-                          svgSrc: "assets/heartrateicon.svg",
+                          image: Image(image: AssetImage('heartRate.png')),
+                          //svgSrc: "assets/heartrateicon.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -102,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Temperature",
                           boxColor: Colors.lightBlue,
-                          svgSrc: "assets/icons/Excrecises.svg",
+                          //svgSrc: "assets/icons/Excrecises.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -115,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Pressure",
                           boxColor: Colors.indigoAccent,
-                          svgSrc: "assets/icons/Meditation.svg",
+                          //svgSrc: "assets/icons/Meditation.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -130,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                           boxColor: Colors.teal,
                           // svgSrc: "assets/icons/yoga.svg",
 
-                          someIcon : Icon(Icons.bluetooth_audio_rounded, color: Colors.white),
+                          //someIcon : Icon(Icons.bluetooth_audio_rounded, color: Colors.white),
                           press: () {
 
                             Navigator.push(
@@ -147,7 +178,8 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+
         ],
       ),
     );
@@ -157,6 +189,7 @@ class HomeScreen extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   final String svgSrc;
+  final Image image;
   final String title;
   final Function press;
   final Color boxColor;
@@ -165,7 +198,8 @@ class CategoryCard extends StatelessWidget {
     this.svgSrc,
     this.title,
     this.press,
-    this.boxColor
+    this.boxColor,
+    this.image
   }) : super(key: key);
 
   @override
@@ -174,7 +208,7 @@ class CategoryCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(13),
       child: Container(
         width: 100,
-        height: 300,
+        height: 50,
         // padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: boxColor,
@@ -297,11 +331,9 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 30),
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(29.5),
       ),
       child: TextField(
         decoration: InputDecoration(
@@ -387,6 +419,76 @@ class BottomNavItem extends StatelessWidget {
             style: TextStyle(color: isActive ? kActiveIconColor : kTextColor),
           ),
         ],
+      ),
+    );
+  }
+}class MoodsSelector extends StatefulWidget {
+  // MoodsSelector({Key key}) : super(key: key);
+
+  @override
+  _MoodsSelectorState createState() => _MoodsSelectorState();
+}
+
+class _MoodsSelectorState extends State<MoodsSelector> {
+  //List<bool> isSelected = List.generate(5, (_) => false);
+  List<bool> isSelected = [ true,false,false,false,false];
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ToggleButtons(
+        selectedColor: Colors.purple,
+        borderColor: Colors.transparent,
+        renderBorder: false,
+        fillColor: Colors.transparent,
+        children: <Widget>[
+          Icon(
+            Icons.sentiment_very_dissatisfied,
+            size: 36,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: Icon(
+              Icons.sentiment_dissatisfied,
+              size: 36,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: Icon(
+              Icons.sentiment_neutral,
+              size: 36,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: Icon(
+              Icons.sentiment_satisfied,
+              size: 36,
+            ),
+          ),
+          Icon(
+            Icons.sentiment_very_satisfied,
+            size: 36,
+          ),
+        ],
+        isSelected: isSelected,
+        onPressed: (int index) {
+          setState(() {
+            // for (int buttonIndex = 0;
+            //     buttonIndex < isSelected.length;
+            //     buttonIndex++) {
+            //   if (buttonIndex == index) {
+            //     isSelected[buttonIndex] = true;
+            //   } else {
+            //     isSelected[buttonIndex] = false;
+            //   }
+            // }
+
+            isSelected[index] = !isSelected[index];
+          });
+        },
       ),
     );
   }
