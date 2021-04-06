@@ -71,6 +71,22 @@ class HomeScreen extends StatelessWidget {
                       //child: SvgPicture.asset("assets/icons/menu.svg"),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                        alignment: Alignment.center,
+                        height: 52,
+                        width: 52,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.bluetooth),
+                          hoverColor: Colors.blue,
+                        )
+                      //child: SvgPicture.asset("assets/icons/menu.svg"),
+                    ),
+                  ),
                   Text(
                     "How are you doing today?",
                     style: Theme.of(context)
@@ -130,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                           boxColor: Colors.teal,
                           // svgSrc: "assets/icons/yoga.svg",
 
-                          someIcon : Icon(Icons.bluetooth_audio_rounded, color: Colors.white),
+                          //someIcon : Icon(Icons.bluetooth_audio_rounded, color: Colors.white),
                           press: () {
 
                             Navigator.push(

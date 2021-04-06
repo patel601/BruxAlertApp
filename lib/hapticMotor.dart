@@ -30,13 +30,13 @@ class MyStatelessWidget extends StatelessWidget {
             icon: const Icon(Icons.bluetooth),
             tooltip: 'Show connection',
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Connected to device!')));
+              //ScaffoldMessenger.of(context).showSnackBar(
+                  //const SnackBar(content: Text('Connected to device!')));
             },
           ),
           IconButton(
             icon: const Icon(Icons.bluetooth_audio),
-
+            onPressed: () { },
             color: Colors.purple,
 
               tooltip: 'Toggle Bluetooth'
