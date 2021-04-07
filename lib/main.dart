@@ -18,17 +18,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Meditation App',
+      title: 'BruxAlert',
       theme: ThemeData(
         fontFamily: "Cairo",
         textTheme: Theme.of(context).textTheme.apply(displayColor: Color(0xFF222B45)),
       ),
-      home: HomeScreen(),
+      home: MyHomePage(),
     );
   }
 }
+class MyHomePage extends StatefulWidget{
+  MyHomePage({Key key, this.title}) : super(key:key);
+  final String title;
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
-class HomeScreen extends StatelessWidget {
+
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context)
@@ -42,10 +50,6 @@ class HomeScreen extends StatelessWidget {
             height: size.height * .45,
             decoration: BoxDecoration(
               color: Color(0xFFF5CEB8),
-              image: DecorationImage(
-                alignment: Alignment.centerLeft,
-                image: AssetImage("assets/images/undraw_pilates_gpdb.png"),
-              ),
             ),
           ),
           SafeArea(
@@ -68,23 +72,6 @@ class HomeScreen extends StatelessWidget {
                           icon: const Icon(Icons.account_circle),
                           hoverColor: Colors.blue,
                         )
-                      //child: SvgPicture.asset("assets/icons/menu.svg"),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                        alignment: Alignment.center,
-                        height: 52,
-                        width: 52,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.bluetooth),
-                          hoverColor: Colors.blue,
-                        )
-                      //child: SvgPicture.asset("assets/icons/menu.svg"),
                     ),
                   ),
                   Text(
@@ -93,19 +80,45 @@ class HomeScreen extends StatelessWidget {
                         .textTheme
                         .display1
                         .copyWith(fontWeight: FontWeight.w900),
+
                   ),
-                  SearchBar(),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                  ),
+                  Positioned(
+                    bottom: 0,
+
+                    child: Container(
+
+                      height: 75.0,
+                      width: MediaQuery.of(context).size.width - 40,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(28)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              spreadRadius: 5.5,
+                              blurRadius: 5.5,
+                            )
+                          ]),
+                      child:MoodsSelector(),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                  ),
                   Expanded(
                     child: GridView.count(
                       crossAxisCount: 2,
                       childAspectRatio: .85,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
                       children: <Widget>[
                         CategoryCard(
                           title: "Heart Rate",
                           boxColor: Colors.pinkAccent,
-                          svgSrc: "assets/heartrateicon.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -118,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Temperature",
                           boxColor: Colors.lightBlue,
-                          svgSrc: "assets/icons/Excrecises.svg",
+                          //svgSrc: "assets/icons/Excrecises.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -131,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Pressure",
                           boxColor: Colors.indigoAccent,
-                          svgSrc: "assets/icons/Meditation.svg",
+                          //svgSrc: "assets/icons/Meditation.svg",
                           press: () {
                             Navigator.push(
                               context,
@@ -163,7 +176,8 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+
         ],
       ),
     );
@@ -172,26 +186,23 @@ class HomeScreen extends StatelessWidget {
 
 
 class CategoryCard extends StatelessWidget {
-  final String svgSrc;
   final String title;
   final Function press;
   final Color boxColor;
   const CategoryCard({
     Key key,
-    this.svgSrc,
     this.title,
     this.press,
-    this.boxColor
+    this.boxColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(13),
+      borderRadius: BorderRadius.circular(9),
       child: Container(
-        width: 100,
-        height: 300,
-        // padding: EdgeInsets.all(20),
+        width: 20,
+        height: 35,
         decoration: BoxDecoration(
           color: boxColor,
           borderRadius: BorderRadius.circular(13),
@@ -212,9 +223,6 @@ class CategoryCard extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: <Widget>[
-
-                  Spacer(),
-                  //SvgPicture.asset(svgSrc),
                   Spacer(),
                   Text(
                     title,
@@ -305,31 +313,6 @@ class SeassionCard extends StatelessWidget {
   }
 }
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 30),
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(29.5),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "Search",
-          //icon: SvgPicture.asset("assets/icons/search.svg"),
-          border: InputBorder.none,
-        ),
-      ),
-    );
-  }
-}
-
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
     Key key,
@@ -360,6 +343,14 @@ class BottomNavBar extends StatelessWidget {
             color: Colors.white,
             icon: Icons.home,
             isActive: true,
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return MyHomePage();
+                }),
+              );
+            },
           ),
           BottomNavItem(
             title: "Settings",
@@ -372,7 +363,28 @@ class BottomNavBar extends StatelessWidget {
     );
   }
 }
+class SearchBar extends StatelessWidget {
+  const SearchBar({
+    Key key,
+  }) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Search",
+          //icon: SvgPicture.asset("assets/icons/search.svg"),
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+}
 class BottomNavItem extends StatelessWidget {
   final String svgScr;
   final String title;
@@ -403,6 +415,63 @@ class BottomNavItem extends StatelessWidget {
             style: TextStyle(color: isActive ? kActiveIconColor : kTextColor),
           ),
         ],
+      ),
+    );
+  }
+}class MoodsSelector extends StatefulWidget {
+  @override
+  _MoodsSelectorState createState() => _MoodsSelectorState();
+}
+
+class _MoodsSelectorState extends State<MoodsSelector> {
+  List<bool> isSelected = [ true,false,false,false,false];
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ToggleButtons(
+        selectedColor: Colors.purple,
+        borderColor: Colors.transparent,
+        renderBorder: false,
+        fillColor: Colors.transparent,
+        children: <Widget>[
+          Icon(
+            Icons.sentiment_very_dissatisfied,
+            size: 36,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: Icon(
+              Icons.sentiment_dissatisfied,
+              size: 36,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: Icon(
+              Icons.sentiment_neutral,
+              size: 36,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: Icon(
+              Icons.sentiment_satisfied,
+              size: 36,
+            ),
+          ),
+          Icon(
+            Icons.sentiment_very_satisfied,
+            size: 36,
+          ),
+        ],
+        isSelected: isSelected,
+        onPressed: (int index) {
+          setState(() {
+            isSelected[index] = !isSelected[index];
+          });
+        },
       ),
     );
   }
