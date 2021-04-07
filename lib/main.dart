@@ -1,3 +1,4 @@
+import 'package:BruxAlert/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -71,6 +72,37 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: IconButton(
                           icon: const Icon(Icons.account_circle),
                           hoverColor: Colors.blue,
+                          onPressed:(){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return SettingsScreen();
+                              }),
+                            );
+                          },
+                        )
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                        alignment: Alignment.center,
+                        height: 52,
+                        width: 52,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.bluetooth),
+                          hoverColor: Colors.blue,
+                          onPressed:(){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return SettingsScreen();
+                              }),
+                            );
+                          },
                         )
                     ),
                   ),
@@ -78,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "How are you doing today?",
                     style: Theme.of(context)
                         .textTheme
-                        .display1
+                        .headline4
                         .copyWith(fontWeight: FontWeight.w900),
 
                   ),
@@ -90,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     child: Container(
 
-                      height: 75.0,
+                      height: 60.0,
                       width: MediaQuery.of(context).size.width - 40,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -229,7 +261,7 @@ class CategoryCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .title
+                        .headline6
                         .copyWith(fontSize: 15),
                   )
                 ],
@@ -300,7 +332,7 @@ class SeassionCard extends StatelessWidget {
                     SizedBox(width: 10),
                     Text(
                       "$seassionTitle",
-                      style: Theme.of(context).textTheme.subtitle,
+                      style: Theme.of(context).textTheme.subtitle2,
                     )
                   ],
                 ),
@@ -357,6 +389,14 @@ class BottomNavBar extends StatelessWidget {
             color: Colors.white,
             icon: Icons.settings,
             isActive: true,
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return SettingsScreen();
+                }),
+              );
+            },
           ),
         ],
       ),
