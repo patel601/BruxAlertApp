@@ -5,6 +5,7 @@ import 'heartRate.dart';
 import 'temperature.dart';
 import 'hapticMotor.dart';
 import 'pressure.dart';
+import 'settings.dart';
 // import 'package:flutter_app3/screens/details_screen.dart';
 // import 'package:flutter_app3/widgets/bottom_nav_bar.dart';
 // import 'flutter_app3/lib/category_card.dart';
@@ -357,6 +358,14 @@ class BottomNavBar extends StatelessWidget {
             color: Colors.white,
             icon: Icons.settings,
             isActive: true,
+            press: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context){
+                  return SettingsScreen();
+                }),
+              );
+            },
           ),
         ],
       ),
