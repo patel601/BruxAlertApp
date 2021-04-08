@@ -51,13 +51,13 @@ class TemperatureScreen extends StatelessWidget {
                       spacing: 20,
                       runSpacing: 20,
                       children: <Widget>[
-                        SeassionCard(
-                          seassionTitle: "Today's Stats",
+                        DataButton(
+                          title: "Today's Stats",
                           isDone: true,
                           press: () {},
                         ),
-                        SeassionCard(
-                          seassionTitle: "All Time Stats",
+                        DataButton(
+                          title: "All Time Stats",
                           press: () {},
                         ),
                       ],

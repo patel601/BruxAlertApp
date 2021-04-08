@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-
+import 'main.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,17 +11,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Calendar(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class Calendar extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  CalendarScreen createState() => CalendarScreen();
 }
 
-class _HomePageState extends State<HomePage> {
+class CalendarScreen extends State<Calendar> {
   CalendarController _controller;
 
   @override
@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
       appBar: AppBar(
         title: Text('Flutter Calendar'),
       ),
@@ -60,9 +61,9 @@ class _HomePageState extends State<HomePage> {
                 formatButtonShowsNext: false,
               ),
               startingDayOfWeek: StartingDayOfWeek.monday,
-              onDaySelected: (date, events) {
-                print(date.toIso8601String());
-              },
+              // onDaySelected: (date, events) {
+              //   print(date.toIso8601String());
+              // },
               builders: CalendarBuilders(
                 selectedDayBuilder: (context, date, events) => Container(
                     margin: const EdgeInsets.all(4.0),

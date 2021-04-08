@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TemperatureGrid extends StatelessWidget {
+class PressureStatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,15 +10,15 @@ class TemperatureGrid extends StatelessWidget {
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard('Low Temperature', '92F ', Colors.blue),
-                _buildStatCard('High Temperature', '96.2F', Colors.red),
+                _buildStatCard('Low Pressure Reading', '----', Colors.blue),
+                _buildStatCard('High Pressure Reading', '----', Colors.red),
               ],
             ),
           ),
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard('Average Temperature', '96.3F', Colors.green)
+                _buildStatCard('Average Pressure', '----', Colors.green)
               ],
             ),
           ),

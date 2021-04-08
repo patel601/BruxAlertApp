@@ -2,10 +2,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'styles.dart';
 
-class heartRateGraph extends StatelessWidget {
-  final List<double> hrVals;
+class hpGraph extends StatelessWidget {
+  final List<double> hpVals;
 
-  const heartRateGraph({@required this.hrVals});
+  const hpGraph({@required this.hpVals});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class heartRateGraph extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             alignment: Alignment.centerLeft,
             child: Text(
-              'Heart Rate (BPM)',
+              'Haptic Motor',
               style: const TextStyle(
                 fontSize: 22.0,
                 fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class heartRateGraph extends StatelessWidget {
                   ),
                 ),
                 borderData: FlBorderData(show: false),
-                barGroups: hrVals
+                barGroups: hpVals
                     .asMap()
                     .map((key, value) => MapEntry(
                     key,

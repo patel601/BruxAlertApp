@@ -1,3 +1,4 @@
+import 'package:BruxAlert/pressure_stats_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -7,11 +8,11 @@ import 'hapticMotor.dart';
 import 'pressure.dart';
 import 'settings.dart';
 import 'calendar.dart';
-// import 'package:flutter_app3/screens/details_screen.dart';
-// import 'package:flutter_app3/widgets/bottom_nav_bar.dart';
-// import 'flutter_app3/lib/category_card.dart';
-// import 'package:flutter_app3/widgets/search_bar.dart';
-
+import 'heartRate_stats_screen.dart';
+import 'temperature_stats_screen.dart';
+import 'pressure_stats_screen.dart';
+import 'hp_stats_screen.dart';
+import 'progress.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -118,19 +119,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       children: <Widget>[
-                        CategoryCard(
+                        DataCard(
                           title: "Heart Rate",
                           boxColor: Colors.pinkAccent,
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return HeartRateScreen();
+                                return HRStats();
                               }),
                             );
                           },
                         ),
-                        CategoryCard(
+                        DataCard(
                           title: "Temperature",
                           boxColor: Colors.lightBlue,
                           //svgSrc: "assets/icons/Excrecises.svg",
@@ -138,12 +139,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return TemperatureScreen();
+                                return TempStats();
                               }),
                             );
                           },
                         ),
-                        CategoryCard(
+                        DataCard(
                           title: "Pressure",
                           boxColor: Colors.indigoAccent,
                           //svgSrc: "assets/icons/Meditation.svg",
@@ -151,12 +152,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return PressureScreen();
+                                return PressureStats();
                               }),
                             );
                           },
                         ),
-                        CategoryCard(
+                        DataCard(
                           title: "Haptic Motor",
                           boxColor: Colors.teal,
                           // svgSrc: "assets/icons/yoga.svg",
@@ -167,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return HMotorScreen();
+                                return HMStats();
                               }),
                             );
                           },
@@ -187,11 +188,11 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-class CategoryCard extends StatelessWidget {
+class DataCard extends StatelessWidget {
   final String title;
   final Function press;
   final Color boxColor;
-  const CategoryCard({
+  const DataCard({
     Key key,
     this.title,
     this.press,
@@ -201,13 +202,13 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(9),
+      borderRadius: BorderRadius.circular(5),
       child: Container(
-        width: 20,
-        height: 35,
+        width: 10,
+        height: 15,
         decoration: BoxDecoration(
           color: boxColor,
-          borderRadius: BorderRadius.circular(13),
+          borderRadius: BorderRadius.circular(7),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, 17),
@@ -244,15 +245,15 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
-class SeassionCard extends StatelessWidget {
-  final int seassionNum;
-  final String seassionTitle;
+class DataButton extends StatelessWidget {
+  final int dataNum;
+  final String title;
   final bool isDone;
   final Function press;
-  const SeassionCard({
+  const DataButton({
     Key key,
-    this.seassionTitle,
-    this.seassionNum,
+    this.dataNum,
+    this.title,
     this.isDone = false,
     this.press,
   }) : super(key: key);
@@ -263,8 +264,9 @@ class SeassionCard extends StatelessWidget {
       return ClipRRect(
         borderRadius: BorderRadius.circular(13),
         child: Container(
-          width: constraint.maxWidth / 2 -
-              10, // constraint.maxWidth provide us the available with for this widget
+          height: 25,
+          width: constraint.maxWidth / 3 -
+              30, // constraint.maxWidth provide us the available with for this widget
           // padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -301,7 +303,7 @@ class SeassionCard extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     Text(
-                      "$seassionTitle",
+                      "$title",
                       style: Theme.of(context).textTheme.subtitle,
                     )
                   ],
@@ -337,7 +339,7 @@ class BottomNavBar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return CalendarScreen();
+                  return Calendar();
                 }),
               );
             },
@@ -347,6 +349,14 @@ class BottomNavBar extends StatelessWidget {
             color: Colors.white,
             icon: Icons.analytics_outlined,
             isActive: true,
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ChartsDemo();
+                }),
+              );
+            },
           ),
           BottomNavItem(
             title: "Home",
