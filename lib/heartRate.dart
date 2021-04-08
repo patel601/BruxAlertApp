@@ -13,10 +13,7 @@ class HeartRateScreen extends StatelessWidget {
             height: size.height * .45,
             decoration: BoxDecoration(
               color: Colors.pinkAccent,
-              image: DecorationImage(
-                image: AssetImage("assets/images/meditation_bg.png"),
-                fit: BoxFit.fitWidth,
-              ),
+
             ),
           ),
           SafeArea(

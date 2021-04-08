@@ -1,4 +1,3 @@
-import 'package:BruxAlert/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -6,9 +5,6 @@ import 'heartRate.dart';
 import 'temperature.dart';
 import 'hapticMotor.dart';
 import 'pressure.dart';
-import 'package:flutter/material.dart';
-import 'dart:math';
-import 'package:charts_flutter/flutter.dart' as charts;
 // import 'package:flutter_app3/screens/details_screen.dart';
 // import 'package:flutter_app3/widgets/bottom_nav_bar.dart';
 // import 'flutter_app3/lib/category_card.dart';
@@ -25,20 +21,20 @@ class MyApp extends StatelessWidget {
       title: 'BruxAlert',
       theme: ThemeData(
         fontFamily: "Cairo",
-        textTheme:
-            Theme.of(context).textTheme.apply(displayColor: Color(0xFF222B45)),
+        textTheme: Theme.of(context).textTheme.apply(displayColor: Color(0xFF222B45)),
       ),
       home: MyHomePage(),
     );
   }
 }
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget{
+  MyHomePage({Key key, this.title}) : super(key:key);
   final String title;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
+
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
@@ -60,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
+
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Align(
@@ -74,52 +71,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: IconButton(
                           icon: const Icon(Icons.account_circle),
                           hoverColor: Colors.blue,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return SettingsScreen();
-                              }),
-                            );
-                          },
-                        )),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                        alignment: Alignment.center,
-                        height: 52,
-                        width: 52,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.bluetooth),
-                          hoverColor: Colors.blue,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return SettingsScreen();
-                              }),
-                            );
-                          },
-                        )),
+                        )
+                    ),
                   ),
                   Text(
                     "How are you doing today?",
                     style: Theme.of(context)
                         .textTheme
-                        .headline4
+                        .display1
                         .copyWith(fontWeight: FontWeight.w900),
+
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
                   ),
                   Positioned(
                     bottom: 0,
+
                     child: Container(
-                      height: 60.0,
+
+                      height: 75.0,
                       width: MediaQuery.of(context).size.width - 40,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -132,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               blurRadius: 5.5,
                             )
                           ]),
-                      child: MoodsSelector(),
+                      child:MoodsSelector(),
                     ),
                   ),
                   Padding(
@@ -190,6 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           //someIcon : Icon(Icons.bluetooth_audio_rounded, color: Colors.white),
                           press: () {
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
@@ -205,11 +177,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+
         ],
       ),
     );
   }
 }
+
 
 class CategoryCard extends StatelessWidget {
   final String title;
@@ -255,7 +229,7 @@ class CategoryCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .headline6
+                        .title
                         .copyWith(fontSize: 15),
                   )
                 ],
@@ -326,7 +300,7 @@ class SeassionCard extends StatelessWidget {
                     SizedBox(width: 10),
                     Text(
                       "$seassionTitle",
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: Theme.of(context).textTheme.subtitle,
                     )
                   ],
                 ),
@@ -363,14 +337,6 @@ class BottomNavBar extends StatelessWidget {
             color: Colors.white,
             icon: Icons.analytics_outlined,
             isActive: true,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return ChartsDemo();
-                }),
-              );
-            },
           ),
           BottomNavItem(
             title: "Home",
@@ -391,21 +357,12 @@ class BottomNavBar extends StatelessWidget {
             color: Colors.white,
             icon: Icons.settings,
             isActive: true,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return SettingsScreen();
-                }),
-              );
-            },
           ),
         ],
       ),
     );
   }
 }
-
 class SearchBar extends StatelessWidget {
   const SearchBar({
     Key key,
@@ -428,7 +385,6 @@ class SearchBar extends StatelessWidget {
     );
   }
 }
-
 class BottomNavItem extends StatelessWidget {
   final String svgScr;
   final String title;
@@ -436,15 +392,15 @@ class BottomNavItem extends StatelessWidget {
   final bool isActive;
   final Color color;
   final IconData icon;
-  const BottomNavItem(
-      {Key key,
-      this.svgScr,
-      this.title,
-      this.press,
-      this.isActive = false,
-      this.color,
-      this.icon})
-      : super(key: key);
+  const BottomNavItem({
+    Key key,
+    this.svgScr,
+    this.title,
+    this.press,
+    this.isActive = false,
+    this.color,
+    this.icon
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -453,6 +409,7 @@ class BottomNavItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
+
           Text(
             title,
             style: TextStyle(color: isActive ? kActiveIconColor : kTextColor),
@@ -461,15 +418,14 @@ class BottomNavItem extends StatelessWidget {
       ),
     );
   }
-}
-
-class MoodsSelector extends StatefulWidget {
+}class MoodsSelector extends StatefulWidget {
   @override
   _MoodsSelectorState createState() => _MoodsSelectorState();
 }
 
 class _MoodsSelectorState extends State<MoodsSelector> {
-  List<bool> isSelected = [true, false, false, false, false];
+  List<bool> isSelected = [ true,false,false,false,false];
+
 
   @override
   Widget build(BuildContext context) {
@@ -519,134 +475,4 @@ class _MoodsSelectorState extends State<MoodsSelector> {
       ),
     );
   }
-}
-
-class ChartsDemo extends StatefulWidget {
-  //
-  ChartsDemo() : super();
-
-  final String title = "Progress per day";
-
-  @override
-  ChartsDemoState createState() => ChartsDemoState();
-}
-
-class ChartsDemoState extends State<ChartsDemo> {
-  //
-  List<charts.Series> seriesList;
-
-  static List<charts.Series<Progress, String>> _createRandomData() {
-    final random = Random();
-
-    final progressDay = [
-      Progress('Monday', random.nextInt(100)),
-      Progress('Tuesday', random.nextInt(100)),
-      Progress('Wednesday', random.nextInt(100)),
-      Progress('Thursday', random.nextInt(100)),
-      Progress('Friday', random.nextInt(100)),
-      Progress('Saturday', random.nextInt(100)),
-      Progress('Sunday', random.nextInt(100)),
-    ];
-
-    final tabletProgressData = [
-      Progress('Monday', random.nextInt(100)),
-      Progress('Tuesday', random.nextInt(100)),
-      Progress('Wednesday', random.nextInt(100)),
-      Progress('Thursday', random.nextInt(100)),
-      Progress('Friday', random.nextInt(100)),
-      Progress('Saturday', random.nextInt(100)),
-      Progress('Sunday', random.nextInt(100)),
-    ];
-
-    final mobileProgessData = [
-      Progress('Monday', random.nextInt(100)),
-      Progress('Tuesday', random.nextInt(100)),
-      Progress('Wednesday', random.nextInt(100)),
-      Progress('Thursday', random.nextInt(100)),
-      Progress('Friday', random.nextInt(100)),
-    ];
-
-    return [
-      charts.Series<Progress, String>(
-        id: 'Progress',
-        domainFn: (Progress progress, _) => progress.day,
-        measureFn: (Progress progress, _) => progress.clenches,
-        data: progressDay,
-        fillColorFn: (Progress progress, _) {
-          return charts.MaterialPalette.blue.shadeDefault;
-        },
-      ),
-      // charts.Series<Progress, String>(
-      //   id: 'Progress',
-      //   domainFn: (Progress progress, _) => progress.day,
-      //   measureFn: (Progress progress, _) => progress.clenches,
-      //   data: tabletProgressData,
-      //   fillColorFn: (Progress progress, _) {
-      //     return charts.MaterialPalette.green.shadeDefault;
-      //   },
-      // ),
-      // charts.Series<Progress, String>(
-      //   id: 'PROGRESS',
-      //   domainFn: (Progress progress, _) => progress.day,
-      //   measureFn: (Progress progress, _) => progress.clenches,
-      //   data: mobileProgessData,
-      //   fillColorFn: (Progress progress, _) {
-      //     return charts.MaterialPalette.teal.shadeDefault;
-      //   },
-      // )
-    ];
-  }
-
-  barChart() {
-    return charts.BarChart(
-      seriesList,
-      animate: true,
-      vertical: true,
-      barGroupingType: charts.BarGroupingType.grouped,
-      defaultRenderer: charts.BarRendererConfig(
-        groupingType: charts.BarGroupingType.grouped,
-        strokeWidthPx: 2.0,
-      ),
-      domainAxis: charts.OrdinalAxisSpec(
-        renderSpec: charts.NoneRenderSpec(),
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    seriesList = _createRandomData();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Padding(
-      padding: const EdgeInsets.all(10),
-    );
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("CLENCHES FOR THIS WEEK"),
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.pink,
-      ),
-      body: Container(
-        padding: EdgeInsets.all(20.0),
-        child: barChart(),
-      ),
-    );
-  }
-}
-// Text(
-    //   "See how many clenches you did for today!",
-    //   style: Theme.of(context)
-    //       .textTheme
-    //       .headline4
-    //       .copyWith(fontWeight: FontWeight.w900),
-    // );
-class Progress {
-  final String day;
-  final int clenches;
-
-  Progress(this.day, this.clenches);
 }
