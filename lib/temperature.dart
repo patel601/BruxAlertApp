@@ -40,7 +40,9 @@ class TemperatureScreen extends StatelessWidget {
                     SizedBox(height: 10),
                     SizedBox(
                       width: size.width * .6, // it just take 60% of total width
-
+                      child: Text(
+                        "Temperature may indicate moments of clenching or grinding. Look at today, all week, month, or all time stats. ",
+                      ),
                     ),
                     SizedBox(
                       height: 40,

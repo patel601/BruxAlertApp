@@ -12,7 +12,7 @@ class PressureScreen extends StatelessWidget {
           Container(
             height: size.height * .45,
             decoration: BoxDecoration(
-              color: Colors.pinkAccent,
+              color: Colors.indigoAccent,
 
             ),
           ),
@@ -41,7 +41,9 @@ class PressureScreen extends StatelessWidget {
                     SizedBox(height: 10),
                     SizedBox(
                       width: size.width * .6, // it just take 60% of total width
-
+                      child: Text(
+                        "Increased pressure may indicate moments of clenching or grinding. Look at today, all week, month, or all time stats. ",
+                      ),
                     ),
                     SizedBox(
                       height: 40,
